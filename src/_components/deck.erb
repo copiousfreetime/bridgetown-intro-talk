@@ -2,9 +2,9 @@
   <div class="slides">
     <% slides.each do |slide| %>
       <% slide.transform! %>
-      <section>
-        <%= slide.content %>
-      </section>
+
+      <%= slide.content %>
+
     <% end %>
   </div>
 </div>
