@@ -1,0 +1,62 @@
+---
+order: 10
+---
+
+<section>
+  <h1>
+    Lets make a site
+  </h1>
+</section>
+
+<section>
+  <h2>Create an initial project</h2>
+  <pre>
+    <code class="language-bash">
+    gem exec bridgetown new --templates erb example-site
+    </code>
+  </pre>
+</section>
+
+<section>
+  <h2>⁉️<code>gem exec</code>⁉️ </h2>
+</section>
+
+<section>
+  <h2><a
+    href="https://github.com/rubygems/rubygems/blob/master/CHANGELOG.md#348--2023-03-08">
+      3.4.8 / 2023-03-08
+    </a>
+  </h2>
+  <p>
+    <b>Experimental</b> Add <code><b>gem exec</b></code> command to run executables from gems that may or
+    may not be installed. Pull request <a href="https://github.com/rubygems/rubygems/pull/6309">#6309</a>
+    by segiddins
+  </p>
+</section>
+
+<section>
+   <p>
+    The <code><b>exec</b></code> command handles installing (if necessary) and running
+    an executable from a gem, regardless of whether that gem is currently
+    installed.
+   </p>
+
+   <p>
+     The <code><b>exec</b></code> command can be thought of as a shortcut to running gem install and
+     then the executable from the installed gem.
+   </p>
+</section>
+
+<section>
+  <h2>Create an initial project</h2>
+  <pre>
+    <code class="language-bash" data-line-numbers="2|3|4|5">
+    gem exec bridgetown new --templates erb example-site
+    # ... lots of output
+    cd example-site
+    ./bin/bridgetown start
+    </code>
+  </pre>
+  <a href="http://localhost:4000" target="_new">Visit Demo</a>
+</section>
+
