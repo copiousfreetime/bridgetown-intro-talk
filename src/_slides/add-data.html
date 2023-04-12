@@ -54,7 +54,7 @@ $ tree ./src/_data
   <h3>Basic Resource</h3>
   <p class="fragment fade-in">1 File &rarr; 1 URL</p>
   <p class="fragment fade-in">Frontmatter + Templatized Content</p>
-  <p class="fargment fade-in">Pipeline converts to output resource</p>
+  <p class="fragment fade-in">Pipeline converts to output resource</p>
 
   <aside class="notes">
     <pre><code>
@@ -73,7 +73,7 @@ $ tree ./src/_data
   <h3>Filter resources</h3>
   <p class="fragment fade-in">All resources are in a collection</p>
   <p class="fragment fade-in">All frontmatter data is in the Resource object</p>
-  <p class="fragment fade-in">Use frontmatter to filter Resources</p>
+  <p class="fragment fade-in">Use frontmatter data to filter Resources</p>
   <p class="fragment fade-in">
     Useful for site-wide items, headers, footers, navigation, menus etc
   </p>
@@ -108,8 +108,87 @@ $ tree ./src/_data
   </aside>
 </section>
 
-<!-- 
-- prototype pages for the meetings
-- prototype pages for the speakers
-- add in full text search
--->
+<section>
+  <h3>Resource != Data Item</h3>
+  <pre class="fragment fade-in"><code class="language-ruby">
+  >> site.collections.pages.class
+  Bridgetown::Collection < Object
+  >> site.collections.pages.resources.first.class
+  Bridgetown::Resource::Base
+  </code></pre>
+
+  <pre class="fragment fade-in"><code class="language-ruby">
+  >> site.data.meetings.class
+  HashWithDotAccess::Hash < ActiveSupport::HashWithIndifferentAccess
+  </code></pre>
+</section>
+
+<section>
+  <h3>Lets Extend</h3>
+  <p class="fragment fade-in">
+    Problem, all this data we have, but they are not resources, they are data.
+    We want a resource for each meeting so each meeting has its own output page.
+  </p>
+  <p class="fragment fade-in">
+    Lets create a resource for every meeting data item
+  </p>
+  <aside class="notes">
+    <pre><code>
+    git co 09-meeting-resources
+    vim plugins/builders/data_resources.rb
+    vim src/_layouts/meeting.erb
+    vim src/meetings.html
+    vim bridgetown.config.yml
+    </code></pre>
+  </aside>
+</section>
+
+<section>
+  <h3>Deployment</h3>
+  <p class="fragment fade-in">Netlify</p>
+  <p class="fragment fade-in">Render</p>
+  <p class="fragment fade-in">Vercel</p>
+  <p class="fragment fade-in">rsync</p>
+  <p class="fragment fade-in">GitLab</p>
+  <p class="fragment fade-in">GitHub</p>
+  <p class="fragment fade-in">Docker</p>
+</section>
+
+<section>
+  <h3>Netlify</h3>
+  <pre class="fragment fade-in"><code class="language-bash">
+  % ./bin/bridgetown config netlify
+  create  netlify.toml
+  create  bin/netlify.sh
+  </code></pre>
+  <p class="fragment fade-in">Got to Netlify</p>
+  <p class="fragment fade-in">Import the existing github repo</p>
+  <p class="fragment fade-in">Save</p>
+  <p class="fragment fade-in">Auto deploy</p>
+  <p class="fragment fade-in">
+    <a href="https://starlit-starlight-a7784e.netlify.app/" target="_blank">View the site</a>
+  </p>
+</section>
+
+<section>
+  <h3>Not Covered</h3>
+  <p class="fragment fade-in">Lifecycle Hooks</p>
+  <p class="fragment fade-in">Fetching remote content</p>
+  <p class="fragment fade-in">Server Side Rendering</p>
+  <p class="fragment fade-in">Dynamic Routes</p>
+  <p class="fragment fade-in">React Components</p>
+</section>
+
+<section>
+  <h3>Questions?</h3>
+</section>
+
+<section>
+  <h3>Thank You!</h3>
+  <p class="fragment fade-in">
+    <a href="https://github.com/copiousfreetime/bridgetown-intro-talk/"
+      target="_blank">
+      https://github.com/copiousfreetime/bridgetown-intro-talk/
+    </a>
+  </p>
+</section>
