@@ -50,13 +50,171 @@ order: 10
 <section>
   <h2>Create an initial project</h2>
   <pre>
-    <code class="language-bash" data-line-numbers="2|3|4|5">
+    <code class="language-bash" data-trim data-line-numbers="2|3|4|5">
     gem exec bridgetown new --templates erb example-site
     # ... lots of output
     cd example-site
     ./bin/bridgetown start
     </code>
   </pre>
-  <a href="http://localhost:4000" target="_new">Visit Demo</a>
+  <aside class="notes">
+    <p>
+    <pre><code class="language-bash">
+    cd /Users/jeremy/repos/github.com/copiousfreetime/example-site
+    git co 01-bridgetown-new
+    BRIDGETOWN_PORT=4001 ./bin/bridgetown start
+    </code></pre>
+    </p>
+    <a href="http://localhost:4001" target="_new">Visit Demo</a>
+  </aside>
+</section>
+
+<section>
+  <h2>Folder Layout</h2>
+  <pre><code data-trim class="language-bash">
+.
+├── config   # this is where frontend and server defaults are stored
+├── frontend # this is where you put your CSS and JS for esbuild/Webpack
+│   ├── javascript
+│   │   ├── index.js
+│   │   └── widget.js
+│   ├── styles
+│   │   ├── index.css
+│   └   └── layout.css
+├── server # this is where you can (optionally) add API routes using Roda
+├── src    # this is where you put your resources and design templates
+│   ├── _components
+│   │   ├── footer.erb
+│   │   └── header.erb
+│   ├── _data
+│   │   ├── members.yml
+│   │   └── site_metadata.yml
+│   ├── _layouts
+│   │   ├── default.erb
+│   │   └── post.serb
+│   ├── _posts
+│   │   ├── 2021-09-18-enjoying-the-celebration.md
+│   │   └── 2022-04-07-checking-out-bridgetown-now.md
+│   ├── images
+│   │   └── logo.svg
+│   ├── 404.html
+│   ├── some_page.md
+│   └── index.html # or index.md
+├── output                # this is the generated site after build process
+├── plugins               # this is where you can write custom plugins
+├── bridgetown.config.yml # this is your Bridgetown configuration file
+├── config.ru             # Puma uses this to boot up the web server
+├── esbuild.config.js     # frontend bundler config
+├── Gemfile
+├── Rakefile
+└── package.json
+  </code>
+  </pre>
+</section>
+
+<section>
+  <h2>Add turbo</h2>
+  <p>
+    This is a <a
+      href="https://www.bridgetownrb.com/docs/bundled-configurations#turbo"
+      target="_new">bundled configuration</a>
+  </p>
+  <pre> <code class="language-bash">
+  bin/bridgetown configure turbo
+  </code></pre>
+  <aside class="notes">
+    This is a bundled configuration, which means that the bridgetown command
+    knows how to install it.
+
+    We'll get to seeing it used later. For now we're going to install it.
+    <pre><code data-trim class="language-bash">
+    git co 02-adding-turbo
+    git diff --name-only 01-bridgetown-new
+    git diff 01-bridgetown-new frontend/javascript/index.js
+    </code></pre>
+  </aside>
+</section>
+
+<section>
+  <h2>Add quick search</h2>
+  <p>
+    This is a <a href="https://github.com/bridgetownrb/bridgetown-quick-search"
+                 target="_new">community supported plugin</a>
+  </p>
+  <pre>
+    <code class="language-bash">
+  bundle add bridgetown-quick-search
+    </code>
+  </pre>
+
+  <pre><code class="language-ruby">
+  # config/initializers.rb
+
+  init :"bridgetown-quick-search"
+  </code></pre>
+
+  <pre><code class="language-javascript">
+  // frontend/javascript/index.js
+
+  import "bridgetown-quick-search/dist"
+  </code></pre>
+
+  <aside class="notes">
+    This is a community supported plugin - which means it is installed as a gem.
+    We'll get to seeing it used later. For now we're going to install it.
+    <pre><code data-trim class="language-bash">
+    git co 03-adding-quick-search
+    </code></pre>
+  </aside>
+</section>
+
+<section>
+  <h2>Apply tailwindcss</h2>
+  <p>
+    This is a <a href="https://github.com/bridgetownrb/tailwindcss-automation"
+                 target="_new">community supported automation</a>
+    <pre>
+      <code class="language-bash">
+bin/bridgetown apply https://github.com/bridgetownrb/tailwindcss-automation
+      </code>
+    </pre>
+  </p>
+  <aside class="notes">
+    <ul>
+      <li>bundled configuration</li>
+      <li>gem with instructions</li>
+      <li>automation</li>
+    </ul>
+    <pre><code data-trim class="language-bash">
+    git co 04-apply-tailwindcss
+    </code></pre>
+    <a href="http://localhost:4001" target="_new">Visit Demo</a>
+  </aside>
+</section>
+
+<section>
+  <h2>Copy and Paste Montage</h2>
+  <pre><code class="language-bash">
+  % git diff --name-only 04-apply-tailwindcss
+  src/_components/container.erb
+  src/_components/container.rb
+  src/_components/header.erb
+  src/_components/header.rb
+  src/_components/navbar.rb
+  src/_components/shared/navbar.erb
+  src/_components/shared/navbar.rb
+  src/_layouts/default.erb
+  src/_partials/_footer.erb
+  src/images/boulder_ruby_logo.jpg
+  </code></pre>
+
+  <small>And the secret is out</small>
+
+  <aside class="notes">
+    <pre><code>
+    git co 05-convert-layout-to-tailwind
+    </code></pre>
+    Open site
+  </aside>
 </section>
 
