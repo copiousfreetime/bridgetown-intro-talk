@@ -51,21 +51,53 @@ $ tree ./src/_data
 </section>
 
 <section>
-  <h3>Resource frontmatter</h3>
-  <p>Using frontmatter to filter</p>
-  <p>interpreter doesn't matter html/erb</p>
-  <p>Components accessing the front matter - current page</p>
+  <h3>Basic Resource</h3>
+  <p class="fragment fade-in">1 File &rarr; 1 URL</p>
+  <p class="fragment fade-in">Frontmatter + Templatized Content</p>
+  <p class="fargment fade-in">Pipeline converts to output resource</p>
 
   <aside class="notes">
     <pre><code>
     git co 07-static-pages
+    vim src/index.html
+    vim src/presenting.md
+    </code></pre>
+    <p>default template from global config determines default template</p>
+    <p>can set explicit template language in frontmatter</p>
+    <p>knows to convert markdown + template or just do template</p>
+    <p>show the presenting has a layout that has a layout</p>
+  </aside>
+</section>
+
+<section>
+  <h3>Filter resources</h3>
+  <p class="fragment fade-in">All resources are in a collection</p>
+  <p class="fragment fade-in">All frontmatter data is in the Resource object</p>
+  <p class="fragment fade-in">Use frontmatter to filter Resources</p>
+  <p class="fragment fade-in">
+    Useful for site-wide items, headers, footers, navigation, menus etc
+  </p>
+
+  <aside class="notes">
+    This is useful elswhere in the system say in header/foo
+    <pre><code>
+    vim src/_components/header.rb
+    vim src/_components/header.erb
+    vim src/_partials/_footer.erb
     </code></pre>
   </aside>
 </section>
 
 <section>
-  <h3>Collection Pages</h3>
-  <p>Using front matter to select collection</p>
+  <h3>Use a collection in a Resource</h3>
+  <pre class="fragment fade-in"><code class="language-yaml">
+  ---
+  layout: default
+  title: Sponsors
+  top_level: true
+  sponsors: site.data.sponsors
+  ---
+  </code></pre>
 
   <aside class="notes">
     <pre><code>
@@ -75,3 +107,9 @@ $ tree ./src/_data
     show the frontmatter building up
   </aside>
 </section>
+
+<!-- 
+- prototype pages for the meetings
+- prototype pages for the speakers
+- add in full text search
+-->
