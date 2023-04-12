@@ -1,0 +1,77 @@
+---
+order: 20
+---
+<section>
+  <h3><code>src/_data/</code></h3>
+  <pre class="fragment fade-up"><code data-trim class="language-bash">
+  .json # Must be an Array or Object
+  </code></pre>
+  <pre class="fragment fade-up"><code data-trim class="language-bash">
+  .yml  # Only 1 document
+  </code></pre>
+  <pre class="fragment fade-up"><code data-trim class="language-bash">
+  .csv  # Must have a header row
+  </code></pre>
+  <pre class="fragment fade-up"><code data-trim class="language-bash">
+  .rb   # Must evaluate to Array or respond `to_hash`
+  </code></pre>
+</section>
+
+<section>
+  <h3>bridgetown console</h3>
+  <pre><code data-trim class="language-shell">
+$ tree ./src/_data
+./src/_data
+├── locations.yml
+├── meetings.yml
+├── people.yml
+├── site_metadata.yml
+└── talks.yml
+./bin/bridgetown console
+  </code></pre>
+
+  <pre><code data-trim class="language-ruby">
+>> site.data.keys
+[
+  [0] "locations",
+  [1] "meetings",
+  [2] "people",
+  [3] "site_metadata",
+  [4] "talks"
+]
+  </code></pre>
+  <aside class="notes">
+    <pre><code>
+    git co 06-add-data
+    ./bin/bridgetown console
+    >> site.data.keys
+    </code></pre>
+    Go to console and look at the various items available
+  </aside>
+</section>
+
+<section>
+  <h3>Resource frontmatter</h3>
+  <p>Using frontmatter to filter</p>
+  <p>interpreter doesn't matter html/erb</p>
+  <p>Components accessing the front matter - current page</p>
+
+  <aside class="notes">
+    <pre><code>
+    git co 07-static-pages
+    </code></pre>
+  </aside>
+</section>
+
+<section>
+  <h3>Collection Pages</h3>
+  <p>Using front matter to select collection</p>
+
+  <aside class="notes">
+    <pre><code>
+    git co 08-collection-pages
+    </code></pre>
+
+    show the frontmatter building up
+  </aside>
+</section>
